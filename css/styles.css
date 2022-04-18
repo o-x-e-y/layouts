@@ -1,0 +1,155 @@
+html {
+    background-color: #222;
+    font-family: Roboto Mono, monospace;
+    font-size: 1.05vw;
+    color: #ddd;
+}
+
+#home-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 7vw;
+    height: 3vw;
+    border-right: #666 1px solid;
+    border-bottom: #666 1px solid;
+    border-bottom-right-radius: 0.75vw;
+    padding: 0.75vw;
+    background-color: #393939;
+}
+
+#home {
+    width: fit-content;
+    margin: auto;
+    transform: translate(-0.3vw, 0.3vw);
+    font-size: 1.5vw;
+    font-weight: bolder;
+}
+
+#home-link {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+
+    z-index: 1;
+}
+
+header {
+    font-weight: bolder;
+    font-size: 1.5vw;
+    margin: -0.8vw;
+    text-align: center;
+}
+
+.kb-wrapper {
+    text-align: center;
+    width: 40vw;
+    height: 8vw;
+    background-color: #444;
+    border-radius: 0.65vw;
+    padding: 0.3vw;
+    font-size: 1.84vw;
+    margin: auto;
+    overflow: hidden;
+}
+
+#keyboard {
+    display: grid;
+    grid-gap: 0.2vw 0.2vw;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-areas:
+        '. . . . . e . . . . .'
+        '. . . . . e . . . . .'
+        '. . . . . e . . . . .';
+
+    width: 100%;
+    height: 100%;
+}
+
+.empty {
+    grid-area: e;
+}
+
+.k {
+    background-color: rgb(175, 175, 175);
+    border: 1px #ddd solid;
+    border-radius: 0.4vw;
+    overflow: hidden;
+    line-height: 2.1vw;
+    user-select: none;
+}
+
+.k:hover {
+    cursor: default;
+}
+
+article {
+    background-color: #333;
+    width: 90vw;
+    padding: 1vw;
+    border-radius: 1.5vw;
+    margin: 1vw auto auto auto;
+}
+
+h2 {
+    font-size: 2vw;
+    font-weight: bolder;
+    text-align: center;
+    margin: 1vw auto 1vw auto;
+}
+
+h1, h2 {
+    text-decoration: #777 underline 1px;
+}
+
+section {
+    width: 88%;
+    margin: auto;
+    line-height: 1.5;
+    border: #444 2px solid;
+    border-radius: 0.75vw;
+    padding: 0.75vw;
+    background-color: #393939;
+}
+
+a:link {
+    color: #4C72CF;
+}
+
+a:visited {
+    color: #7E4DCF;
+}
+
+code {
+    background-color: #444;
+    padding: 0.1vw;
+}
+
+.genkey {
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+    background-color: #444;
+    width: 28.5vw;
+    height: 13vw;
+    display: inline-grid;
+}
+
+#stats-wrapper {
+    width: 88%;
+    margin: auto;
+    background-color: #393939;
+    border: #444 2px solid;
+    border-radius: 0.75vw;
+    padding: 0.75vw;
+}
+
+.stats {
+    width: fit-content;
+    margin: 0.5vw;
+}
+
+#load-overlay {
+    display: block;
+}
