@@ -30,7 +30,7 @@ function _setLanguageData(data, repaintBetterOrWorse) {
         key.innerText = data.convert[key.innerText] || key.innerText;
     }
     languageData = data;
-    analyze(excludedKeys, languageData, repaintBetterOrWorse);
+    analyze(excludedKeys, languageData, repaintBetterOrWorse, true);
 }
 
 function setLanguageData(language, repaintBetterOrWorse) {
@@ -55,7 +55,6 @@ window.onload = () => {
     languageElem.addEventListener("change", (c) => {
         const language = c.target.value;
         setLanguageData(language, true);
-        analyze(excludedKeys, languageData, language, false);
     });
 
     document.addEventListener("dragover", (event) => {
@@ -71,7 +70,7 @@ window.onload = () => {
                 key.classList.add("excluded-key");
                 excludedKeys.add(key.innerHTML);
             }
-            analyze(excludedKeys, languageData, true);
+            analyze(excludedKeys, languageData, true, false);
             return false;
         }
 
@@ -106,7 +105,7 @@ window.onload = () => {
 
         key.addEventListener('dragend', () => {
             key.classList.remove('dragging');
-            analyze(excludedKeys, languageData, true);
+            analyze(excludedKeys, languageData, true, false);
         })
     })
 }

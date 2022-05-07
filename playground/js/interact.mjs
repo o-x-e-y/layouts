@@ -90,10 +90,11 @@ function betterOrWorseStat(elem, cur) {
     }
 }
 
-function analyze(excludedKeys, languageData, betterOrWorse) {
+function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys) {
     let layout = "";
 	keys.forEach(key => layout += key.innerText);
     let data = analyzeLayout(layout, excludedKeys, languageData);
+    prepareKeys(layout, languageData["characters"], excludedKeys, resetExcludedKeys);
 
     let sfbTotal = 0, sfbElemPast0 = 0, sfbElemPast1 = 0;
     let totalUsageRight = 0, totalUsageLeft = 0;
@@ -155,4 +156,4 @@ function analyze(excludedKeys, languageData, betterOrWorse) {
     invalidElement.innerText = `${(trigrams.invalid * 100).toFixed(3)}%`;
 }
 
-export {analyze, prepareKey, prepareKeys};
+export {analyze, prepareKey};
