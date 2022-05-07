@@ -47,6 +47,7 @@ function prepareKey(characterData, key) {
 }
 
 function prepareKeys(layout, characterData, excludedKeys, resetExcludedKeys) {
+    console.log(layout);
     for (let i = 0; i < keys.length; ++i) {
         keys[i].innerText = layout.charAt(i);
         prepareKey(characterData, keys[i]);
