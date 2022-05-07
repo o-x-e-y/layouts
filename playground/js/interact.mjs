@@ -25,20 +25,6 @@ const totalRedirectElement = document.getElementById("stat-total-redirect");
 const otherElement = document.getElementById("stat-other");
 const invalidElement = document.getElementById("stat-invalid");
 
-let sfbPrev = 0.0;
-let dsfbPrev = 0.0;
-let lsbPrev = 0.0;
-let inrollPrev = 0.0;
-let outrollPrev = 0.0;
-let totalRollPrev = 0.0;
-let onehandPrev = 0.0;
-let alternatePrev = 0.0;
-let alternateSfsPrev = 0.0;
-let totalAlternatePrev = 0.0;
-let redirectPrev = 0.0;
-let badRedirectPrev = 0.0;
-let totalRedirectPrev = 0.0;
-
 function prepareKey(characterData, key) {
     let prevalence = characterData[key.innerText] || 0;
     let complement = 190 - prevalence * 1750;
@@ -74,9 +60,12 @@ function betterOrWorseSfb(sfbPast, frequencyElement) {
     }
 }
 
-function betterOrWorseStat(elem, cur) {
+function betterOrWorseStat(elem, cur, lowerIsBetter) {
     let prev = parseFloat(elem.innerText);
     let diff = cur*100 - prev;
+    if (lowerIsBetter) {
+        diff = -diff;
+    }
     
     if (Math.abs(diff) < 0.001) {
         elem.style.backgroundColor = '';
@@ -125,19 +114,19 @@ function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys) {
     
     let trigrams = data.trigramFreqs;
 
-    betterOrWorseStat(sfbElement, sfbTotal, sfbPrev);
-    betterOrWorseStat(dsfbElement, data.dsfbTotal, dsfbPrev);
-    betterOrWorseStat(lsbElement, data.lsbTotal, lsbPrev);
-    betterOrWorseStat(inrollElement, trigrams.inrolls, inrollPrev);
-    betterOrWorseStat(outrollElement, trigrams.outrolls, outrollPrev);
-    betterOrWorseStat(totalRollElement, (trigrams.inrolls+trigrams.outrolls), totalRollPrev);
-    betterOrWorseStat(onehandElement, trigrams.onehands, onehandPrev);
-    betterOrWorseStat(alternateElement, trigrams.alternates, alternatePrev);
-    betterOrWorseStat(alternateSfsElement, trigrams.alternatesSfs, alternateSfsPrev);
-    betterOrWorseStat(totalAlternateElement, (trigrams.alternates+trigrams.alternatesSfs), totalAlternatePrev);
-    betterOrWorseStat(redirectElement, trigrams.redirects, redirectPrev);
-    betterOrWorseStat(badRedirectElement, trigrams.badRedirects, badRedirectPrev);
-    betterOrWorseStat(totalRedirectElement, (trigrams.redirects+trigrams.badRedirects), totalRedirectPrev);
+    betterOrWorseStat(sfbElement, sfbTotal, true);
+    betterOrWorseStat(dsfbElement, data.dsfbTotal, true);
+    betterOrWorseStat(lsbElement, data.lsbTotal, true);
+    betterOrWorseStat(inrollElement, trigrams.inrolls, false);
+    betterOrWorseStat(outrollElement, trigrams.outrolls, false);
+    betterOrWorseStat(totalRollElement, (trigrams.inrolls+trigrams.outrolls), false);
+    betterOrWorseStat(onehandElement, trigrams.onehands, false);
+    betterOrWorseStat(alternateElement, trigrams.alternates, false);
+    betterOrWorseStat(alternateSfsElement, trigrams.alternatesSfs, false);
+    betterOrWorseStat(totalAlternateElement, (trigrams.alternates+trigrams.alternatesSfs), false);
+    betterOrWorseStat(redirectElement, trigrams.redirects, true);
+    betterOrWorseStat(badRedirectElement, trigrams.badRedirects, true);
+    betterOrWorseStat(totalRedirectElement, (trigrams.redirects+trigrams.badRedirects), true);
 
     sfbElement.innerText = `${(sfbTotal * 100).toFixed(3)}%`;
     dsfbElement.innerText = `${(data.dsfbTotal * 100).toFixed(3)}%`;
