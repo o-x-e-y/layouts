@@ -1,0 +1,96 @@
+#config-wrapper {
+    margin-top: max(0.7vh, 0.8vw);
+    margin-bottom: max(0.52vh, 0.6vw);
+}
+
+#languages {
+    display: block;
+    margin: 0 auto;
+}
+
+select {
+    font-size: 100%;
+    color: #ddd;
+    background-color: #333;
+    border: #ddd 1px solid;
+    border-radius: 0.2vw;
+}
+
+.k:hover {
+    cursor: default;
+}
+
+.k.dragging {
+    opacity: 60%;
+}
+
+.excluded-key {
+    opacity: 40%;
+    background-color: green;
+}
+
+#analysis-wrapper {
+    padding: 0.5vw;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    column-gap: 1.5vw;
+}
+
+.analysis {
+    padding: 0.5vw;
+    padding-top: 0.8vw;
+    background-color: #444;
+    text-align: center;
+    font-size: 1.4vw;
+    border-radius: 0.5vw;
+}
+
+.analysis table {
+    font-size: 85%;
+    margin: 2% auto 2% auto;
+    text-align: left;
+}
+
+.stat-table tr td {
+    font-size: 85%;
+    border: 1px #555 solid;
+    border-radius: 0.1vw;
+    width: 20%;
+}
+
+.stat-table tr td:hover {
+    background-color: #555;
+    transition: all 0.1s ease;
+}
+
+.additional-info {
+    margin-top: 0.5vw;
+    font-size: 100%;
+    width: 45%;
+    border-width: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#homerow-usage {
+    width: 60%;
+    font-size: 90%;
+    margin: -1.5% auto 3% auto;
+}
+
+#trigrams-wrapper {
+    /* height: fit-content; */
+    /* margin: auto; */
+}
+
+.stat {
+    width: fit-content;
+    margin-left: 1vw;
+    margin-top: 0.1vw;
+    font-size: max(0.75vh, 1.05vw)
+}
+
+.nl {
+    margin-top: 1.3vw;
+}

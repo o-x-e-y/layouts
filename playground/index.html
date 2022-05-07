@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Layout Playground</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="../styles.css">    
+    <link rel="stylesheet" href="playground.css">
+    <script type="module" src="js/playground.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: #222;">
+    <div id="home-wrapper">
+        <div id="home">Home</div>
+        <a href="../index.html"><span id="home-link"></span></a>
+    </div>
+    <header>
+        <h1>Layout Playground</h1>
+    </header>
+    <article>
+        <div class="kb-wrapper">
+            <div id="keyboard">
+                <div class="k" draggable="true" style="background-color: rgb(175, 159, 159);" title="Key usage: 1.79%">w</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 118, 118);" title="Key usage: 4.12%">l</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 153, 153);" title="Key usage: 2.13%">f</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 127, 127);" title="Key usage: 3.62%">d</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 176, 176);" title="Key usage: 0.8%">k</div>
+                <div class="empty"></div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 188, 188);" title="Key usage: 0.1%">z</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 187, 187);" title="Key usage: 0.17%">j</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 140, 140);" title="Key usage: 2.88%">u</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 57, 57);" title="Key usage: 7.6%">o</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 156, 156);" title="Key usage: 1.92%">y</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 136, 136);" title="Key usage: 3.09%">c</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 85, 85);" title="Key usage: 6.02%">r</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 78, 78);" title="Key usage: 6.4%">s</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 34, 34);" title="Key usage: 8.89%">t</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 154, 154);" title="Key usage: 2.04%">g</div>
+                <div class="empty"></div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 153, 153);" title="Key usage: 2.09%">p</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 72, 72);" title="Key usage: 6.77%">n</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 0, 0);" title="Key usage: 11.71%">e</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 51, 51);" title="Key usage: 7.93%">a</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 66, 66);" title="Key usage: 7.1%">i</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 182, 182);" title="Key usage: 0.45%">'</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 186, 186);" title="Key usage: 0.21%">x</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 171, 171);" title="Key usage: 1.07%">v</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 148, 148);" title="Key usage: 2.42%">m</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 188, 188);" title="Key usage: 0.1%">q</div>
+                <div class="empty"></div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 164, 164);" title="Key usage: 1.49%">b</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 110, 110);" title="Key usage: 4.56%">h</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 172, 172);" title="Key usage: 1.0%">,</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 171, 171);" title="Key usage: 1.1%">.</div>
+                <div class="k" draggable="true" style="background-color: rgb(175, 188, 188);" title="Key usage: 0.1%">;</div>
+            </div>
+        </div>
+        <div id="config-wrapper">
+            <label for="languages"></label>
+            <select name="languages" id="languages">
+                <option value="english">English</option>
+            </select>
+        </div>
+        <!-- <h2>Stats</h2> -->
+        <section style="margin-top: max(0.875vh, 1vw)">
+            <div id="analysis-wrapper">
+                <div class="analysis">
+                    <b>Finger usage:</b>
+                    <table class="stat-table" id="finger-frequency-table">
+                        <tbody>
+                            <tr>
+                                <td>finger 0:</td>
+                                <td class="usage-p">5.33%</td>
+                                <td>finger 9:</td>
+                                <td class="usage-p">9.47%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 1:</td>
+                                <td class="usage-p">10.36%</td>
+                                <td>finger 8:</td>
+                                <td class="usage-p">16.62%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 2:</td>
+                                <td class="usage-p">9.59%</td>
+                                <td>finger 7:</td>
+                                <td class="usage-p">15.59%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 3:</td>
+                                <td class="usage-p">17.87%</td>
+                                <td>finger 6:</td>
+                                <td class="usage-p">15.18%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="additional-info" id="usage-left">Left hand: 43.15%</td>
+                                <td class="additional-info" id="usage-right">Right hand: 56.85%</td>
+                            </tr>
+                            <tr>
+                                <td class="additional-info" id="center-usage-left">Left center: 2.941%</td>
+                                <td class="additional-info" id="center-usage-right">Right center: 3.678%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="additional-info" id="homerow-usage">Home keys usage: 57.90%</div>
+                    <b>Sfb% per finger:</b>
+                    <table class="stat-table" id="sfb-frequency-table">
+                        <tbody>
+                            <tr>
+                                <td>finger 0:</td>
+                                <td class="sfb-p">0.022%</td>
+                                <td>finger 9:</td>
+                                <td class="sfb-p">0.091%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 1:</td>
+                                <td class="sfb-p">0.092%</td>
+                                <td>finger 8:</td>
+                                <td class="sfb-p">0.134%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 2:</td>
+                                <td class="sfb-p">0.030%</td>
+                                <td>finger 7:</td>
+                                <td class="sfb-p">0.349%</td>
+                            </tr>
+                            <tr>
+                                <td>finger 3:</td>
+                                <td class="sfb-p">0.123%</td>
+                                <td>finger 6:</td>
+                                <td class="sfb-p">0.165%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="analysis">
+                    <div id="trigrams-wrapper">
+                        <div class="stat" style="margin-top: max(0.35vh, 0.4vw);">Sfb: <span id="stat-sfb">1.007%</span></div>
+                        <div class="stat">Dsfb: <span id="stat-dsfb">7.011%</span></div>
+                        <div class="stat">Lsb: <span id="stat-lsb">2.069%</span></div>
+                        <div class="stat nl">Inrolls: <span id="stat-inroll">26.248%</span></div>
+                        <div class="stat">Outrolls: <span id="stat-outroll">22.247%</span></div>
+                        <div class="stat">Total Rolls: <span id="stat-total-roll">48.495%</span></div>
+                        <div class="stat">Onehands: <span id="stat-onehand">2.800%</span></div>
+                        <div class="stat nl">Alternates: <span id="stat-alternate">31.647%</span></div>
+                        <div class="stat">Alternates (sfs): <span id="stat-alternate-sfs">7.687%</span></div>
+                        <div class="stat">Total Alternates: <span id="stat-total-alternate">39.334%</span></div>
+                        <div class="stat nl">Redirects: <span id="stat-redirect">5.862%</span></div>
+                        <div class="stat">BadRedirects: <span id="stat-bad-redirect">0.390%</span></div>
+                        <div class="stat">Total Redirects: <span id="stat-total-redirect">6.252%</span></div>
+                        <div class="stat nl">Other: <span id="stat-other">2.058%</span></div>
+                        <div class="stat" style="margin-bottom: 0.75vw;">Invalid: <span id="stat-invalid">1.061%</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+</body>
+
+</html>

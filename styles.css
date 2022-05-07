@@ -58,7 +58,7 @@ header {
 
 #keyboard {
     display: grid;
-    grid-gap: max(0.17vh, 0.2vw) max(0.17vh, 0.2vw);
+    gap: max(0.17vh, 0.2vw) max(0.17vh, 0.2vw);
     grid-template-columns: repeat(11, 1fr);
     grid-template-areas:
         '. . . . . e . . . . .'
