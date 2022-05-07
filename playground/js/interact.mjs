@@ -60,10 +60,10 @@ function betterOrWorseSfb(sfbPast, frequencyElement) {
     }
 }
 
-function betterOrWorseStat(elem, cur, higherIsBetter) {
+function betterOrWorseStat(elem, cur, lowerIsBetter) {
     let prev = parseFloat(elem.innerText);
-    let diff = cur*100 - prev;
-    if (higherIsBetter) {
+    let diff = prev - cur * 100;
+    if (lowerIsBetter) {
         diff = -diff;
     }
     
