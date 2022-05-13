@@ -8,7 +8,6 @@ let excludedKeys = new Set();
 function getKeyIndex(event) {
     let tileWidth = document.documentElement.clientWidth / 27.5;	//view width / tile count * 100
     let tileHeight = document.documentElement.clientWidth / 37.5;	//8 / 3 * 100
-    console.log(keyboard.offsetLeft);
     let posX = Math.floor((event.x - keyboard.offsetLeft + window.scrollX) / tileWidth);
     let posY = Math.floor((event.y - keyboard.offsetTop + window.scrollY) / tileHeight);
     return (posX < 5 ? posX : posX - 1) + (posY < 5 ? posY : posY - 1) * 10;

@@ -4,9 +4,11 @@ import {setLanguageData} from "./layout.mjs"
 const searchResultsElem = document.getElementById("search-results-wrapper");
 const searchResults = document.getElementById("search-results");
 const searchbarElem = document.getElementById("search-bar");
-let resultIndex = {};
+let selectorList = [];
+let layoutToIndex = {};
 let selectedElemNr = 0;
 let isOnSearch = false;
+let hasToBlur = false;
 
 class DefaultDict {
     constructor(defaultVal) {
@@ -52,21 +54,35 @@ function* getTrigrams(string) {
     return null;
 }
 
-function fun(layout_name) {
-    console.log(layout_name);
+function searchOnClick(layout_name) {
+    select(layout_name);
+    searchbarElem.value = "";
+    searchbarElem.blur();
+    searchResultsElem.style.display = "none";
+    selectedElemNr = 0;
 }
 
-document.fun = fun;
+document.SOC = searchOnClick;
+
+function searchElemHover(e) {
+    // let selectorList = searchResultsElem.querySelectorAll(".search-result");
+    selectorList[selectedElemNr].classList.remove("search-result-selected");
+    selectedElemNr = layoutToIndex[e.innerText];
+    selectorList[selectedElemNr].classList.add("search-result-selected");
+}
+
+document.SEH = searchElemHover;
 
 function addSearches(layouts) {
     let res = ""
     let i = 0;
     for (let layout of layouts) {
-        res += `<div class="search-result" onclick="fun(this.innerText)">${layout}</div>`;
-        resultIndex["layout"] = i;
+        res += `<div class="search-result" onclick="SOC(this.innerText)" onmouseover="SEH(this)">${layout}</div>`;
+        layoutToIndex[layout] = i;
         ++i;
     }
     searchResults.innerHTML = res;
+    selectorList = searchResultsElem.querySelectorAll(".search-result");
 }
 
 function search(query, max_matches) {
@@ -80,7 +96,6 @@ function search(query, max_matches) {
 }
 
 function initSearch() {
-    let selectorList;
     document.addEventListener("keydown", (e) => {
         switch (e.code) {
             case "Escape":
@@ -88,7 +103,7 @@ function initSearch() {
                 selectedElemNr = 0;
                 break;
             case "ArrowUp":
-                selectorList = searchResultsElem.querySelectorAll(".search-result");
+                // selectorList = searchResultsElem.querySelectorAll(".search-result");
                 selectorList[selectedElemNr].classList.remove("search-result-selected");
                 if (selectedElemNr > 0) {
                     --selectedElemNr;
@@ -99,8 +114,7 @@ function initSearch() {
                 }
                 break;
             case "ArrowDown":
-                selectorList = searchResultsElem.querySelectorAll(".search-result");
-                console.log(selectorList.length, selectedElemNr);
+                // selectorList = searchResultsElem.querySelectorAll(".search-result");
                 selectorList[selectedElemNr].classList.remove("search-result-selected");
                 if (selectedElemNr < selectorList.length - 1) {
                     ++selectedElemNr;
@@ -111,7 +125,7 @@ function initSearch() {
                 }
                 break;
             case "Enter":
-                selectorList = searchResultsElem.querySelectorAll(".search-result");
+                // selectorList = searchResultsElem.querySelectorAll(".search-result");
                 select(selectorList[selectedElemNr].innerText);
                 searchbarElem.value = "";
                 searchbarElem.blur();
@@ -122,13 +136,15 @@ function initSearch() {
         }
     })
 
-    searchResultsElem.addEventListener("mouseenter", () => {
+    searchResultsElem.addEventListener("mouseenter", (e) => {
         isOnSearch = true;
-        console.log(isOnSearch);
     })
     searchResultsElem.addEventListener("mouseleave", () => {
         isOnSearch = false;
-        console.log(isOnSearch);
+        if (hasToBlur) {
+            searchResultsElem.style.display = "none";
+            hasToBlur = false;
+        }
     })
 
     searchbarElem.addEventListener("input", (e) => {
@@ -138,6 +154,8 @@ function initSearch() {
     searchbarElem.addEventListener("blur", () => {
         if (!isOnSearch) {
             searchResultsElem.style.display = "none";
+        } else {
+            hasToBlur = true;
         }
     })
     searchbarElem.addEventListener("focus", (e) => {
@@ -164,7 +182,6 @@ function select(layout_name) {
 // }
 
 function setLayoutInfo(layout_obj) {
-    console.log(layout_obj);
     let layout = layout_obj['layout'];
     let language = layout_obj['for_language'];
     // let link = layout_obj['link'];

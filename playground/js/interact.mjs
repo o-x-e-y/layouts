@@ -87,7 +87,6 @@ function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys, n
     } else {
         layout = newLayout;
     }
-    console.log(layout);
 	
     let data = analyzeLayout(layout, excludedKeys, languageData);
     prepareKeys(layout, languageData["characters"], excludedKeys, resetExcludedKeys);
