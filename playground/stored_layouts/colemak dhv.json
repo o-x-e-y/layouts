@@ -1,0 +1,9 @@
+{
+	"name": "Colemak DHv", 
+	"author": "oats", 
+	"link": "", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "qwcpbjluy;arstgmneiozxfdkvh/.,", 
+	"from_toml": true
+}

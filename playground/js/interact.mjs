@@ -63,25 +63,32 @@ function betterOrWorseSfb(sfbPast, frequencyElement) {
 function betterOrWorseStat(elem, cur, lowerIsBetter) {
     let prev = parseFloat(elem.innerText);
     let diff = prev - cur * 100;
+    let absDiff = Math.abs(diff)
     if (lowerIsBetter) {
         diff = -diff;
     }
     
-    if (Math.abs(diff) < 0.001) {
+    if (absDiff < 0.001) {
         elem.style.backgroundColor = '';
         elem.title = '';
     } else if (diff < -0.001) {
-        elem.style.backgroundColor = '#454';
+        elem.style.backgroundColor = `rgb(68, ${Math.min(68+absDiff*(3/cur), 175)}, 68)`;
         elem.title = `difference: ${(prev - cur*100).toFixed(3)}%`;
     } else {
-        elem.style.backgroundColor = '#544';
+        elem.style.backgroundColor = `rgb(${Math.min(68+absDiff*(3/cur), 175)}, 68, 68)`;
         elem.title = `difference: ${(prev - cur*100).toFixed(3)}%`;
     }
 }
 
-function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys) {
+function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys, newLayout=null) {
     let layout = "";
-	keys.forEach(key => layout += key.innerText);
+    if (newLayout === null || newLayout.length !== 30) {
+        keys.forEach(key => layout += key.innerText);
+    } else {
+        layout = newLayout;
+    }
+    console.log(layout);
+	
     let data = analyzeLayout(layout, excludedKeys, languageData);
     prepareKeys(layout, languageData["characters"], excludedKeys, resetExcludedKeys);
 

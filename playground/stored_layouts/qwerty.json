@@ -1,0 +1,9 @@
+{
+	"name": "QWERTY", 
+	"author": "Christopher Latham Sholes", 
+	"link": "", 
+	"year": 1878, 
+	"for_language": "english", 
+	"layout": "qwertyuiopasdfghjkl;zxcvbnm,./", 
+	"from_toml": true
+}

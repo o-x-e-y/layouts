@@ -1,0 +1,9 @@
+{
+	"name": "Heart", 
+	"author": "Heart", 
+	"link": "github.com/mindhatch/heart", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "qcdvkjyou;rsthlpnaiewgbmxzf,./", 
+	"from_toml": true
+}

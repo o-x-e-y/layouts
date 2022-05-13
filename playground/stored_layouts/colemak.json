@@ -1,0 +1,9 @@
+{
+	"name": "Colemak", 
+	"author": "Shai Coleman", 
+	"link": "colemak.com", 
+	"year": 2006, 
+	"for_language": "english", 
+	"layout": "qwfpgjluy;arstdhneiozxcvbkm,./", 
+	"from_toml": true
+}

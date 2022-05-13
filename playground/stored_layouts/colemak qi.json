@@ -1,0 +1,9 @@
+{
+	"name": "Colemak Qi", 
+	"author": "nyfee", 
+	"link": "", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "qlwmkjfuy'arstgpneiozxcdvbh,./", 
+	"from_toml": true
+}

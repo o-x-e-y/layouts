@@ -61,10 +61,22 @@
             </div>
         </div>
         <div id="config-wrapper">
-            <label for="languages"></label>
-            <select name="languages" id="languages">
-                <option value="english">English</option>
-            </select>
+            <div id="config-elem">
+                <label for="languages"></label>
+                <select name="languages" id="languages">
+                    <option value="english">English</option>
+                </select>
+            </div>
+            <div id="config-elem">
+                <div id="search-wrapper">
+                    <form id="search-form" action="text">
+                        <input type="text" id="search-bar">
+                    </form>
+                    <div id="search-results-wrapper">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- <h2>Stats</h2> -->
         <section style="margin-top: max(0.875vh, 1vw)">
@@ -144,9 +156,11 @@
                 </div>
                 <div class="analysis">
                     <div id="trigrams-wrapper">
-                        <div class="stat" style="margin-top: max(0.35vh, 0.4vw);">Sfb: <span id="stat-sfb">1.007%</span></div>
+                        <div class="stat" style="margin-top: max(0.35vh, 0.4vw);">
+                            Sfb: &nbsp;<span id="stat-sfb">1.007%</span>
+                        </div>
                         <div class="stat">Dsfb: <span id="stat-dsfb">7.011%</span></div>
-                        <div class="stat">Lsb: <span id="stat-lsb">2.069%</span></div>
+                        <div class="stat">Lsb: &nbsp;<span id="stat-lsb">2.069%</span></div>
                         <div class="stat nl">Inrolls: <span id="stat-inroll">26.248%</span></div>
                         <div class="stat">Outrolls: <span id="stat-outroll">22.247%</span></div>
                         <div class="stat">Total Rolls: <span id="stat-total-roll">48.495%</span></div>
@@ -158,7 +172,9 @@
                         <div class="stat">BadRedirects: <span id="stat-bad-redirect">0.390%</span></div>
                         <div class="stat">Total Redirects: <span id="stat-total-redirect">6.252%</span></div>
                         <div class="stat nl">Other: <span id="stat-other">2.058%</span></div>
-                        <div class="stat" style="margin-bottom: 0.75vw;">Invalid: <span id="stat-invalid">1.061%</span></div>
+                        <div class="stat" style="margin-bottom: 0.75vw;">
+                            Invalid: <span id="stat-invalid">1.061%</span>
+                        </div>
                     </div>
                 </div>
             </div>

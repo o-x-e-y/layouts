@@ -1,0 +1,9 @@
+{
+	"name": "Capewell-Dvorak", 
+	"author": "Michael Capewell", 
+	"link": "", 
+	"year": 2005, 
+	"for_language": "english", 
+	"layout": "',.pyqfgrkoaeiudhtnszxcvjlmwb;", 
+	"from_toml": true
+}

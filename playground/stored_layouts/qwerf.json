@@ -1,0 +1,9 @@
+{
+	"name": "QWERF", 
+	"author": "Michael Capewell", 
+	"link": "", 
+	"year": 0, 
+	"for_language": "english", 
+	"layout": "qwerfjylk;asdtghuiopzxcvbnm,./", 
+	"from_toml": true
+}

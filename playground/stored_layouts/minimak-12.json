@@ -1,0 +1,9 @@
+{
+	"name": "Minimak-12", 
+	"author": "Ted Lilley", 
+	"link": "minimak.org", 
+	"year": 2012, 
+	"for_language": "english", 
+	"layout": "qwdfkyuil;astrghneopzxcvbjm,./", 
+	"from_toml": true
+}

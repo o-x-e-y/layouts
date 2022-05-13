@@ -1,0 +1,9 @@
+{
+	"name": "CTGAP 3.0", 
+	"author": "Colby Chai", 
+	"link": "github.com/CTGAP/ctgap-keyboard-layout", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "vplcfkuoyjrntsd'aeihzbmgwx,.;q", 
+	"from_toml": true
+}

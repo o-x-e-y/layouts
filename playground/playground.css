@@ -1,11 +1,62 @@
 #config-wrapper {
     margin-top: max(0.7vh, 0.8vw);
     margin-bottom: max(0.52vh, 0.6vw);
+    width: fit-content;
+    margin: auto;
+}
+
+#config-elem {
+    margin-top: max(0.7vh, 0.8vw);
+    display: inline-block;
 }
 
 #languages {
-    display: block;
     margin: 0 auto;
+}
+
+#search-wrapper {
+    font-size: 90%;
+    width: 10vw;
+    margin-left: 4vw;
+}
+
+#search-bar {
+    width: 9.6vw;
+    padding: 0.2vw;
+    border-radius: 0;
+    background-color: #444;
+    color: #ddd;
+    border: 1px solid #aaa;
+    border-radius: 0.2vw;
+}
+
+#search-results-wrapper {
+    width: inherit;
+    position: absolute;
+    background-color: #aaa;
+    border: 1px solid #aaa;
+    display: none;
+    /* border-radius: 0.5vw; */
+}
+
+#search-results {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 1px;
+}
+
+#search-results:hover {
+    cursor: pointer;
+}
+
+.search-result {
+    width: inherit;
+    padding: 0.2vw;
+    background-color: #444;
+}
+
+.search-result-selected {
+    background-color: #555;
 }
 
 select {
@@ -77,11 +128,6 @@ select {
     width: 60%;
     font-size: 90%;
     margin: -1.5% auto 3% auto;
-}
-
-#trigrams-wrapper {
-    /* height: fit-content; */
-    /* margin: auto; */
 }
 
 .stat {

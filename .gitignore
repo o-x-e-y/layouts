@@ -2,3 +2,5 @@
 */stats.txt
 */layout.kb
 .*
+node_modules
+package*.json

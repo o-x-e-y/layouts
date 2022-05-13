@@ -1,0 +1,9 @@
+{
+	"name": "Colemak Qiou", 
+	"author": "mainstream", 
+	"link": "", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "qlcmkjfoy'arstgpneiuzxwdvbh,./", 
+	"from_toml": true
+}

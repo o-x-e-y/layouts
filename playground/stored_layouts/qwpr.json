@@ -1,0 +1,9 @@
+{
+	"name": "QWPR", 
+	"author": "Jameson Quinn", 
+	"link": "", 
+	"year": 0, 
+	"for_language": "english", 
+	"layout": "qwprfyukl;asdtghnioezxcvbjm,./", 
+	"from_toml": true
+}

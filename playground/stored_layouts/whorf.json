@@ -1,0 +1,9 @@
+{
+	"name": "whorf", 
+	"author": "whorf (NotGate)", 
+	"link": "github.com/whorfian/whorf", 
+	"year": 2021, 
+	"for_language": "english", 
+	"layout": "flhdmvwou,srntkgyaeixjbzqpc';.", 
+	"from_toml": true
+}

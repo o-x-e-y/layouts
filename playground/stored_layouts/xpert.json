@@ -1,0 +1,9 @@
+{
+	"name": "XPERT", 
+	"author": "Rika Maria Wedding", 
+	"link": "xpertkeyboard.com", 
+	"year": 2003, 
+	"for_language": "english", 
+	"layout": "xpertkuiojqsdfnhaelkzwcvbgm,./", 
+	"from_toml": true
+}

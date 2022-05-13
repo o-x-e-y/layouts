@@ -1,0 +1,9 @@
+{
+	"name": "Colemak DH", 
+	"author": "stevep99", 
+	"link": "colemakmods.github.io/mod-dh", 
+	"year": 2014, 
+	"for_language": "english", 
+	"layout": "qwfpbjluy;arstgmneiozxcdvkh,./", 
+	"from_toml": true
+}
