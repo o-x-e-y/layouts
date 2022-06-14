@@ -100,7 +100,11 @@ function initLayout() {
     })
 
     const languageElem = document.getElementById("languages");
-    for (let language of ["Albanian", "Bokmal", "Czech", "Dutch", "German", "Nynorsk", "Toki Pona"]) {
+    for (let language of [
+        "Albanian", "Bokmal", "Czech", "Dutch", "Dutch Repeat", "English Repeat", "English þ",
+        "English2", "Finnish", "Finnish Repeat", "French", "French Qu", "German", "Indonesian",
+        "Mt Quotes", "Nynorsk", "Russian", "Spanish", "Toki Pona", "Tr Quotes"
+    ]) {
         let x = new Option(language, language.toLowerCase().replace(" ", "_"));
         languageElem.append(x);
     }
