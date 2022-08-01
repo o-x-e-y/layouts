@@ -4,6 +4,7 @@ const keys = Array.from(document.querySelectorAll(".k"));
 let languageData;
 let startIndex;
 let excludedKeys = new Set();
+let currentLanguageData = null;
 
 function getKeyIndex(event) {
     let tileWidth = document.documentElement.clientWidth / 27.5;	//view width / tile count * 100
@@ -34,18 +35,22 @@ function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
         key.innerText = data.convert[key.innerText] || key.innerText;
     }
     languageData = data;
-    analyze(excludedKeys, languageData, repaintBetterOrWorse, newLayout);
+    analyze(excludedKeys, languageData, repaintBetterOrWorse, true, newLayout);
 }
 
 function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
-    fetch(`data/${language}.json`)
-        .then((res) => res.json())
-        .then(
-            (json) => {
-                _setLanguageData(json, repaintBetterOrWorse, newLayout);
-            },
-            () => console.log("getting lanugage data failed :/")
-        );
+    if (currentLanguageData !== null) {
+        if (currentLanguageData["language"] !== language) {
+            fetch(`data/${language}.json`)
+                .then((res) => res.json())
+                .then(
+                    (json) => {
+                        _setLanguageData(json, repaintBetterOrWorse, newLayout);
+                    },
+                    () => console.log("getting lanugage data failed :/")
+                );
+        }
+    }
 }
 
 function initLayout() {
