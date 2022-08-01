@@ -47,7 +47,7 @@ header {
 .kb-wrapper {
     text-align: center;
     width: max(35vh, 40vw);
-    height: max(7vh, 8vw);
+    height: max(9.5vh, 11vw);
     background-color: #444;
     border-radius: max(0.55vh, 0.65vw);
     padding: max(0.5vh, 0.3vw);
@@ -60,17 +60,27 @@ header {
     display: grid;
     gap: max(0.17vh, 0.2vw) max(0.17vh, 0.2vw);
     grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-template-areas:
         '. . . . . e . . . . .'
         '. . . . . e . . . . .'
-        '. . . . . e . . . . .';
-
+        '. . . . . e . . . . .'
+        'a a . . . e . . . o o';
+    
     width: 100%;
     height: 100%;
 }
 
-.empty {
+.e {
     grid-area: e;
+}
+
+.a {
+    grid-area: a;
+}
+
+.o {
+    grid-area: o;
 }
 
 .k {

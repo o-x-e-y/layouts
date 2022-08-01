@@ -1,5 +1,5 @@
-function lh(num) {
-    return num < 4;
+function lh(num, nr_of_cols) {
+    return num < (nr_of_cols / 2);
 }
 
 function is_alt(lh1, lh2, lh3) {
@@ -13,19 +13,19 @@ function is_roll(lh1, lh2, lh3, c1, c2, c3) {
 
 function get_roll(lh1, lh2, lh3, c1, c2, c3) {
     if (lh1 && lh2 && !lh3) {
-        return particular_roll(c2, c1);
+        return in_or_out(c2, c1);
     } else if (!lh1 && lh2 && lh3) {
-        return particular_roll(c3, c2);
+        return in_or_out(c3, c2);
     } else if (!lh1 && !lh2 && lh3) {
-        return particular_roll(c1, c2);
+        return in_or_out(c1, c2);
     } else if (lh1 && !lh2 && !lh3) {
-        return particular_roll(c2, c3);
+        return in_or_out(c2, c3);
     } else {
         return 7;
     }
 }
 
-function particular_roll(f1, f2) {
+function in_or_out(f1, f2) {
     if (f1 > f2) {
         return 3;
     }
@@ -37,7 +37,8 @@ function on_one_hand(lh1, lh2, lh3) {
 }
 
 function is_bad_redir(c1, c2, c3) {
-    return !(c1 == 3 || c2 == 3 || c3 == 3 || c1 == 4 || c2 == 4 || c3 == 4);
+    let check = [1, 1, 1, 0, 0, 0, 0, 1, 1, 1];
+    return (check[c1] + check[c2] + check[c3] == 3);
 }
 
 function get_one_hand(c1, c2, c3) {
@@ -53,10 +54,10 @@ function get_one_hand(c1, c2, c3) {
     return 7;
 }
 
-function get_trigram_pattern(c1, c2, c3) {
-    let lh1 = lh(c1);
-    let lh2 = lh(c2);
-    let lh3 = lh(c3);
+function get_trigram_pattern(c1, c2, c3, nr_of_cols) {
+    let lh1 = lh(c1, nr_of_cols);
+    let lh2 = lh(c2, nr_of_cols);
+    let lh3 = lh(c3, nr_of_cols);
 
     if (is_alt(lh1, lh2, lh3)) {
         if (c1 == c3) {
@@ -73,29 +74,28 @@ function get_trigram_pattern(c1, c2, c3) {
     }
 }
 
-function get_trigram_combinations() {
-    let combinations = new Uint32Array(512);
-    for (let i = 0; i < 512; ++i) {
+function get_trigram_combinations(nr_of_cols) {
+    let size = parseInt(Math.log2(nr_of_cols)) + 1;
+    // to be able to keep using the bitshift logic for array indexing
+
+    let combinations = new Uint32Array(Math.pow(size*size, 3));
+    for (let i = 0; i < Math.pow(size*size, 3); ++i) {
         combinations[i] = 7;
     }
+    console.log(combinations.length);
 
-    let c3 = 0;
-    while (c3 < 8) {
-        let c2 = 0;
-        while (c2 < 8) {
-            let c1 = 0;
-            while (c1 < 8) {
-                let index = c3 * 64 + c2 * 8 + c1;
-                combinations[index] = get_trigram_pattern(c1, c2, c3);
-                c1 += 1;
+    for (let c3 = 0; c3 < nr_of_cols; ++c3) {
+        for (let c2 = 0; c2 < nr_of_cols; ++c2) {
+            for (let c1 = 0; c1 < nr_of_cols; ++c1) {
+
+                let index = (c3 << (size * 2)) + (c2 << size) + c1;
+                combinations[index] = get_trigram_pattern(c1, c2, c3, nr_of_cols);
             }
-            c2 += 1;
         }
-        c3 += 1;
     }
     return combinations;
 }
 
-const TrigramCombinations = get_trigram_combinations();
+const TRIGRAM_COMBINATIONS = get_trigram_combinations(10);
 
-export {TrigramCombinations as default};
+export {TRIGRAM_COMBINATIONS as default};

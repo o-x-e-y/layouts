@@ -60,6 +60,7 @@ function getLsbs(bigramData, excludedKeys, layout) {
 }
 
 function analyzeLayout(layout, excludedKeys, languageData) {
+    console.log(layout);
     let fingers = {
         finger0: new Set([layout[0], layout[10], layout[20], '`']),
         finger1: new Set([layout[1], layout[11], layout[21]]),
@@ -68,7 +69,9 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         finger6: new Set(layout.slice(5, 7).concat(layout.slice(15, 17), layout.slice(25, 27))),
         finger7: new Set([layout[7], layout[17], layout[27]]),
         finger8: new Set([layout[8], layout[18], layout[28]]),
-        finger9: new Set([layout[9], layout[19], layout[29]].concat(getExtraPinkyCharacters(layout, languageData["characters"])))
+        finger9: new Set([layout[9], layout[19], layout[29]].concat(getExtraPinkyCharacters(layout, languageData["characters"]))),
+        thumbL: new Set(layout.slice(30, 33)),
+        thumbR: new Set(layout.slice(33, 36))
     }
 
     for(let finger in fingers) {
@@ -83,8 +86,11 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         6: getFingerUsage(fingers.finger6, languageData["characters"]),
         7: getFingerUsage(fingers.finger7, languageData["characters"]),
         8: getFingerUsage(fingers.finger8, languageData["characters"]),
-        9: getFingerUsage(fingers.finger9, languageData["characters"])
+        9: getFingerUsage(fingers.finger9, languageData["characters"]),
+        thumbL: getFingerUsage(fingers.thumbL, languageData["characters"]),
+        thumbR: getFingerUsage(fingers.thumbR, languageData["characters"])
     }
+
     let centerKeys = {
         left: new Set([layout[4], layout[14], layout[24]]),
         right: new Set([layout[5], layout[15], layout[25]]),
@@ -113,7 +119,9 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         6: getSfbForFinger(fingers.finger6, languageData["bigrams"]),
         7: getSfbForFinger(fingers.finger7, languageData["bigrams"]),
         8: getSfbForFinger(fingers.finger8, languageData["bigrams"]),
-        9: getSfbForFinger(fingers.finger9, languageData["bigrams"])
+        9: getSfbForFinger(fingers.finger9, languageData["bigrams"]),
+        thumbL: getSfbForFinger(fingers.thumbL, languageData["bigrams"]),
+        thumbR: getSfbForFinger(fingers.thumbR, languageData["bigrams"])
     }
 
     let dsfbTotal = 0;
@@ -121,11 +129,19 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         dsfbTotal += getSfbForFinger(fingers[finger], languageData["skipgrams"]);
     }
 
-    const COL_TO_FINGER = [0, 1, 2, 3, 3, 4, 4, 5, 6, 7];
+    const COL_TO_FINGER = [0, 1, 2, 3, 3, 6, 6, 7, 8, 9];
     const layoutMap = {};
     for (let i = 0; i < 30; ++i) {
         if (!excludedKeys.has(layout[i])) {
             layoutMap[layout[i]] = COL_TO_FINGER[i % 10];
+        }
+    }
+    for (let i = 30; i < 33; ++i) {
+        if (!excludedKeys.has(layout[i])) {
+            layoutMap[layout[i]] = 4;
+        }
+        if (!excludedKeys.has(layout[i+3])) {
+            layoutMap[layout[i]] = 5;
         }
     }
 
@@ -162,7 +178,8 @@ function getTrigramPattern(layoutMap, trigram) {
         return -1;
     }
     // a, b and c are numbers between 0 and 7. This means they fit in exactly 3 bits (7 = 0b111)
-    let combination = (a << 6) | (b << 3) | c;
+    // they now are between 0 and 9 which can only fit into 4 bits with empty space
+    let combination = (a << 8) | (b << 4) | c;
     return TRIGRAM_COMBINATIONS[combination];
 }
 
@@ -179,12 +196,7 @@ function getTrigramStats(trigramData, layoutMap) {
             case 5: freqs.redirects += freq; break;
             case 6: freqs.badRedirects += freq; break;
             case 7: freqs.other += freq; break;
-            default:
-                // let a = layoutMap[trigram[0]]
-                // let b = layoutMap[trigram[1]]
-                // let c = layoutMap[trigram[2]]
-                // console.log(a, b, c);
-                freqs.invalid += freq; break;
+            default: freqs.invalid += freq; break;
         }
     }
     return freqs;

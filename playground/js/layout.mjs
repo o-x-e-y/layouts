@@ -10,7 +10,11 @@ function getKeyIndex(event) {
     let tileHeight = document.documentElement.clientWidth / 37.5;	//8 / 3 * 100
     let posX = Math.floor((event.x - keyboard.offsetLeft + window.scrollX) / tileWidth);
     let posY = Math.floor((event.y - keyboard.offsetTop + window.scrollY) / tileHeight);
-    return (posX < 5 ? posX : posX - 1) + (posY < 5 ? posY : posY - 1) * 10;
+    if (posY === 3) {
+        posX = [-1, -1, 0, 1, 2, -1, 3, 4, 5, -1, -1][posX];
+        return posY * 10 + posX;
+    }
+    return (posX < 5 ? posX : posX - 1) + posY * 10;
 }
 
 function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
@@ -30,7 +34,7 @@ function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
         key.innerText = data.convert[key.innerText] || key.innerText;
     }
     languageData = data;
-    analyze(excludedKeys, languageData, repaintBetterOrWorse, true, newLayout);
+    analyze(excludedKeys, languageData, repaintBetterOrWorse, newLayout);
 }
 
 function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
@@ -60,7 +64,7 @@ function initLayout() {
                 key.classList.add("excluded-key");
                 excludedKeys.add(key.innerHTML);
             }
-            analyze(excludedKeys, languageData, true, false);
+            analyze(excludedKeys, languageData, false, false);
             return false;
         }
 
@@ -95,7 +99,7 @@ function initLayout() {
 
         key.addEventListener('dragend', () => {
             key.classList.remove('dragging');
-            analyze(excludedKeys, languageData, true, false);
+            analyze(excludedKeys, languageData, false, false);
         })
     })
 

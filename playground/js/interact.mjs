@@ -100,6 +100,10 @@ function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys, n
     let sfbTotal = 0, sfbElemPast0 = 0, sfbElemPast1 = 0;
     let totalUsageRight = 0, totalUsageLeft = 0;
 
+    for (let key in data.fingerSfb) {
+        sfbTotal += data.fingerSfb[key];
+    }
+
     for (let i = 0; i < 4; ++i) {
         fingerFrequencyElements[i * 2].innerText = (data.fingerUsage[i] * 100).toFixed(2) + '%';
         fingerFrequencyElements[i * 2 + 1].innerText = (data.fingerUsage[9 - i] * 100).toFixed(2) + '%';
@@ -115,8 +119,6 @@ function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys, n
             betterOrWorseSfb(sfbElemPast0, sfbFrequencyElements[i * 2]);
             betterOrWorseSfb(sfbElemPast1, sfbFrequencyElements[i * 2 + 1]);
         }
-
-        sfbTotal += data.fingerSfb[i] + data.fingerSfb[9 - i];
     }
     leftHand.innerText = `Left hand: ${((totalUsageLeft) * 100).toFixed(2)}%`;
     rightHand.innerText = `Right hand: ${(totalUsageRight * 100).toFixed(2)}%`;
