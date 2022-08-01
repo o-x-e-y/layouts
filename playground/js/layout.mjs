@@ -39,17 +39,17 @@ function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
 }
 
 function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
-    if (currentLanguageData !== null) {
-        if (currentLanguageData["language"] !== language) {
-            fetch(`data/${language}.json`)
-                .then((res) => res.json())
-                .then(
-                    (json) => {
-                        _setLanguageData(json, repaintBetterOrWorse, newLayout);
-                    },
-                    () => console.log("getting lanugage data failed :/")
-                );
-        }
+    if (currentLanguageData === null || currentLanguageData["language"] !== language) {
+        fetch(`data/${language}.json`)
+            .then((res) => res.json())
+            .then(
+                (json) => {
+                    _setLanguageData(json, repaintBetterOrWorse, newLayout);
+                },
+                () => console.log("getting lanugage data failed :/")
+            );
+    } else {
+        analyze(excludedKeys, currentLanguageData, repaintBetterOrWorse, true, newLayout);
     }
 }
 
