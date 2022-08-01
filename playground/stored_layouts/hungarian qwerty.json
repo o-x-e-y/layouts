@@ -1,0 +1,9 @@
+{
+    "name": "Hungarian Qwerty",
+    "author": "Sholemak guy",
+    "link": "",
+    "year": 0,
+    "for_language": "hungarian",
+    "layout": "qwertzuiopasdfghjkléyxcvbnm,.á",
+    "from_toml": true
+}

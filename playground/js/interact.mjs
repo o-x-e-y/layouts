@@ -27,8 +27,14 @@ const invalidElement = document.getElementById("stat-invalid");
 
 function prepareKey(characterData, key) {
     let prevalence = characterData[key.innerText] || 0;
-    let complement = 190 - prevalence * 1750;
-    key.style.backgroundColor = `rgb(175, ${complement}, ${complement})`;
+    let color = prevalence * 30 + Math.log(prevalence * 120 + 1);
+    let base = 95;
+
+    let r = Math.round(base * 0.9 + color * 18);
+    let g = Math.round(base * 1.3 - color * 10);
+    let b = Math.round(base * 1.325 - color * 10);
+
+    key.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
     key.title = `Key usage: ${(Math.round(prevalence * 100000) / 1000).toFixed(2)}%`;
 }
 

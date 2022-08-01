@@ -27,10 +27,10 @@ html {
 }
 
 #home-link {
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
     left: 0;
 
     z-index: 1;
@@ -75,7 +75,7 @@ header {
 
 .k {
     background-color: rgb(175, 175, 175);
-    border: 1px #ddd solid;
+    border: 1px #444 solid;
     border-radius: max(0.35vh, 0.4vw);
     overflow: hidden;
     line-height: max(1.75vh, 2vw);
@@ -97,7 +97,8 @@ h2 {
     margin: max(0.875vh, 1vw) auto max(0.875vh, 1vw) auto;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-decoration: #777 underline 1px;
 }
 
@@ -131,7 +132,8 @@ section {
     border: #444 2px solid;
     border-radius: max(0.65vh, 0.75vw);
     padding: 0.75vw;
-    font-size: max(0.75vh, 1.05vw)
+    font-size: max(0.75vh, 1.05vw);
+    text-shadow: #ddd 0 0 1px;
 }
 
 .stats {
