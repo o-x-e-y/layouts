@@ -104,7 +104,7 @@ function initLayout() {
         "Albanian", "Bokmal", "Czech", "Dutch", "Dutch Repeat", "English Repeat", "English þ",
         "English2", "Finnish", "Finnish Repeat", "French", "French Qu", "German", "Hungarian",
         "Indonesian", "Mt Quotes", "Nynorsk", "Russian", "Spanish", "Toki Pona", "Tr Quotes", "Welsh",
-        "Welsh Pure"
+        "Welsh Pure", "e200", "450k"
     ]) {
         let x = new Option(language, language.toLowerCase().replace(" ", "_"));
         languageElem.append(x);
