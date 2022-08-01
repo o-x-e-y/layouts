@@ -45,7 +45,6 @@ function prepareKeys(layout, characterData, excludedKeys, resetExcludedKeys) {
     }
     if (resetExcludedKeys) {
         keys.forEach(key => key.classList.remove("excluded-key"));
-        excludedKeys.clear();
     }
 }
 

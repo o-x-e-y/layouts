@@ -18,7 +18,7 @@ function getKeyIndex(event) {
     return (posX < 5 ? posX : posX - 1) + posY * 10;
 }
 
-function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
+function _setLanguageData(data, repaintBetterOrWorse, newLayout = null, resetExcludedKeys) {
     currentLanguageData = data;
     let back = {};
     try {
@@ -36,22 +36,31 @@ function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
         key.innerText = data.convert[key.innerText] || key.innerText;
     }
     languageData = data;
-    analyze(excludedKeys, languageData, repaintBetterOrWorse, true, newLayout);
+    analyze(excludedKeys, languageData, repaintBetterOrWorse, resetExcludedKeys, newLayout);
 }
 
 function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
+    excludedKeys = new Set("=/␣⇧⇯-");
+    for (let i = 0; i < keys.length; ++i) {
+        if (excludedKeys.has(keys[i].innerText)) {
+            keys[i].classList.add("excluded-key");
+            console.log(keys[i]);
+        }
+    }
+
     if (currentLanguageData === null || currentLanguageData["language"] !== language) {
         fetch(`data/${language}.json`)
             .then((res) => res.json())
             .then(
                 (json) => {
-                    _setLanguageData(json, repaintBetterOrWorse, newLayout);
+                    _setLanguageData(json, repaintBetterOrWorse, newLayout, false);
                 },
                 () => console.log("getting lanugage data failed :/")
             );
     } else {
         analyze(excludedKeys, currentLanguageData, repaintBetterOrWorse, true, newLayout);
     }
+    console.log(keys);
 }
 
 function initLayout() {
