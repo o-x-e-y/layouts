@@ -88,11 +88,12 @@ function betterOrWorseStat(elem, cur, lowerIsBetter) {
 
 function analyze(excludedKeys, languageData, betterOrWorse, resetExcludedKeys, newLayout=null) {
     let layout = "";
-    if (newLayout === null || newLayout.length !== 30) {
+    if (newLayout === null || newLayout.length !== 36) {
         keys.forEach(key => layout += key.innerText);
     } else {
         layout = newLayout;
     }
+    console.log(layout, newLayout);
 	
     let data = analyzeLayout(layout, excludedKeys, languageData);
     prepareKeys(layout, languageData["characters"], excludedKeys, resetExcludedKeys);
