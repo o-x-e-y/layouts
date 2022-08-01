@@ -19,6 +19,7 @@ function getKeyIndex(event) {
 }
 
 function _setLanguageData(data, repaintBetterOrWorse, newLayout = null) {
+    currentLanguageData = data;
     let back = {};
     try {
         for (let k in languageData.convert) {
