@@ -36,7 +36,7 @@ function getSfbForFinger(finger, bigramData) {
     return bigram_total;
 }
 
-function getLsbs(bigramData, excludedKeys, layout) {
+function getLsbs(layout, excludedKeys, bigramData) {
     const layoutMap = {};
     for (let i = 0; i < 30; ++i) {
         if (!excludedKeys.has(layout[i])) {
@@ -47,12 +47,8 @@ function getLsbs(bigramData, excludedKeys, layout) {
     let res = 0.0;
     for (let bigram in bigramData) {
         let a = layoutMap[bigram[0]];
-        let b = layoutMap[[bigram[1]]];
-        if (
-            // a == 1 && b == 4 || a == 2 && b == 4 || a == 4 && b == 1 || a == 4 && b == 2 ||
-            // a == 5 && b == 7 || a == 5 && b == 8 || a == 7 && b == 5 || a == 8 && b == 5
-            a == 2 && b == 4 || a == 4 && b == 2 || a == 5 && b == 7 || a == 7 && b == 5
-        ) {
+        let b = layoutMap[bigram[1]];
+        if (a == 2 && b == 4 || a == 4 && b == 2 || a == 5 && b == 7 || a == 7 && b == 5) {
             res += bigramData[bigram];
         }
     }
@@ -135,6 +131,7 @@ function analyzeLayout(layout, excludedKeys, languageData) {
             layoutMap[layout[i]] = COL_TO_FINGER[i % 10];
         }
     }
+    
     for (let i = 30; i < 33; ++i) {
         if (!excludedKeys.has(layout[i])) {
             layoutMap[layout[i]] = 4;
@@ -150,7 +147,7 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         centerUsage: centerUse,
         fingerSfb: sfbPerFinger,
         dsfbTotal: dsfbTotal,
-        lsbTotal: getLsbs(languageData["bigrams"], excludedKeys, layout),
+        lsbTotal: getLsbs(layout, excludedKeys, languageData["bigrams"]),
         trigramFreqs: getTrigramStats(languageData["trigrams"], layoutMap)
     };
 }
