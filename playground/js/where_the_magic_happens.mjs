@@ -60,7 +60,6 @@ function getLsbs(bigramData, excludedKeys, layout) {
 }
 
 function analyzeLayout(layout, excludedKeys, languageData) {
-    console.log(layout);
     let fingers = {
         finger0: new Set([layout[0], layout[10], layout[20], '`']),
         finger1: new Set([layout[1], layout[11], layout[21]]),
