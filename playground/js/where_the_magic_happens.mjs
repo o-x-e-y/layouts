@@ -141,7 +141,7 @@ function analyzeLayout(layout, excludedKeys, languageData) {
             layoutMap[layout[i]] = 4;
         }
         if (!excludedKeys.has(layout[i+3])) {
-            layoutMap[layout[i]] = 5;
+            layoutMap[layout[i+3]] = 5;
         }
     }
 
@@ -185,7 +185,13 @@ function getTrigramPattern(layoutMap, trigram) {
 
 function getTrigramStats(trigramData, layoutMap) {
     let freqs = new TrigramFreq();
+    console.log(layoutMap);
     for (let trigram in trigramData) {
+        if (trigram === "han" || trigram == "nah") {
+            let freq = trigramData[trigram];
+            console.log("pattern for", trigram, "is", getTrigramPattern(layoutMap, trigram),
+            "with freq", freq);
+        }
         let freq = trigramData[trigram];
 		switch (getTrigramPattern(layoutMap, trigram)) {
             case 0: freqs.alternates += freq; break;

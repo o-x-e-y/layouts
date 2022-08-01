@@ -74,15 +74,16 @@ function get_trigram_pattern(c1, c2, c3, nr_of_cols) {
     }
 }
 
-function get_trigram_combinations(nr_of_cols) {
-    let size = parseInt(Math.log2(nr_of_cols)) + 1;
-    // to be able to keep using the bitshift logic for array indexing
+function trigram_index(c1, c2, c3, size) {
+    return (c3 << (size * 2)) + (c2 << size) + c1;
+}
 
-    let combinations = new Uint32Array(Math.pow(size*size, 3));
-    for (let i = 0; i < Math.pow(size*size, 3); ++i) {
-        combinations[i] = 7;
-    }
-    console.log(combinations.length);
+function get_trigram_combinations(nr_of_cols) {
+    // to be able to keep using the bitshift logic for array indexing
+    let size = parseInt(Math.log2(nr_of_cols)) + 1;
+
+    let length = trigram_index(nr_of_cols - 1, nr_of_cols - 1, nr_of_cols - 1, size) + 1;
+    let combinations = new Int32Array(length).fill(-1);
 
     for (let c3 = 0; c3 < nr_of_cols; ++c3) {
         for (let c2 = 0; c2 < nr_of_cols; ++c2) {
