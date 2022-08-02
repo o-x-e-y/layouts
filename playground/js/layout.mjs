@@ -42,11 +42,8 @@ function _setLanguageData(data, repaintBetterOrWorse, newLayout = null, resetExc
 }
 
 function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
-    excludedKeys = new Set("=/␣⇧⇯-");
-    for (let i = 0; i < keys.length; ++i) {
-        if (excludedKeys.has(keys[i].innerText)) {
-            keys[i].classList.add("excluded-key");
-        }
+    for (let i = 30; i < keys.length; ++i) {
+        keys[i].classList.add("excluded-key");
     }
 
     languageElem.selectedIndex = languageToIndex[language] || 0;
