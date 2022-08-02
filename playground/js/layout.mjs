@@ -44,7 +44,6 @@ function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
     for (let i = 0; i < keys.length; ++i) {
         if (excludedKeys.has(keys[i].innerText)) {
             keys[i].classList.add("excluded-key");
-            console.log(keys[i]);
         }
     }
 
@@ -60,7 +59,6 @@ function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
     } else {
         analyze(excludedKeys, currentLanguageData, repaintBetterOrWorse, true, newLayout);
     }
-    console.log(keys);
 }
 
 function initLayout() {
