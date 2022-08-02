@@ -1,10 +1,12 @@
 import { prepareKey, analyze } from "./interact.mjs";
 
 const keys = Array.from(document.querySelectorAll(".k"));
+const languageElem = document.getElementById("languages");
 let languageData;
 let startIndex;
 let excludedKeys = new Set();
 let currentLanguageData = null;
+let languageToIndex = {};
 
 function getKeyIndex(event) {
     let tileWidth = document.documentElement.clientWidth / 27.5;	//view width / tile count * 100
@@ -46,6 +48,8 @@ function setLanguageData(language, repaintBetterOrWorse, newLayout = null) {
             keys[i].classList.add("excluded-key");
         }
     }
+
+    languageElem.selectedIndex = languageToIndex[language] || 0;
 
     if (currentLanguageData === null || currentLanguageData["language"] !== language) {
         fetch(`data/${language}.json`)
@@ -116,14 +120,20 @@ function initLayout() {
         })
     })
 
-    const languageElem = document.getElementById("languages");
-    for (let language of [
+    const languages = [
         "Albanian", "Bokmal", "Czech", "Dutch", "Dutch Repeat", "English Repeat", "English þ",
         "English2", "Finnish", "Finnish Repeat", "French", "French Qu", "German", "Hungarian",
         "Indonesian", "Mt Quotes", "Nynorsk", "Russian", "Spanish", "Toki Pona", "Tr Quotes", "Welsh",
         "Welsh Pure", "e200", "450k"
-    ]) {
-        let x = new Option(language, language.toLowerCase().replace(" ", "_"));
+    ];
+
+    for (let i = 0; i < languages.length; ++i) {
+        let language = languages[i];
+        let baseLanguage = language.toLowerCase().replace(" ", "_");
+        
+        languageToIndex[baseLanguage] = i + 1;
+
+        let x = new Option(language, baseLanguage);
         languageElem.append(x);
     }
 
