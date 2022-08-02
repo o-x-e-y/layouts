@@ -183,7 +183,7 @@ function select(layout_name) {
 
 function setLayoutInfo(layout_obj) {
     let layout = layout_obj['layout'];
-    if (layout.contains("/")) {
+    if (layout.includes("/")) {
         layout += "=;␣⇧⇯-";
     } else {
         layout += "=/␣⇧⇯-";
