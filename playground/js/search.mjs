@@ -182,7 +182,12 @@ function select(layout_name) {
 // }
 
 function setLayoutInfo(layout_obj) {
-    let layout = layout_obj['layout'] +"=/␣⇧⇯-";
+    let layout = layout_obj['layout'];
+    if (layout.contains("/")) {
+        layout += "=;␣⇧⇯-";
+    } else {
+        layout += "=/␣⇧⇯-";
+    }
     let language = layout_obj['for_language'];
     // let link = layout_obj['link'];
     // if (link.length > 0) {
