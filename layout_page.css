@@ -1,0 +1,25 @@
+.kb-wrapper {
+    text-align: center;
+    width: max(35vh, 40vw);
+    height: max(7.125vh, 8.25vw);
+    background-color: #444;
+    border-radius: max(0.55vh, 0.65vw);
+    padding: max(0.5vh, 0.3vw);
+    font-size: max(1.61vh, 1.84vw);
+    margin: auto;
+    overflow: hidden;
+}
+
+#keyboard {
+    display: grid;
+    gap: max(0.17vh, 0.2vw) max(0.17vh, 0.2vw);
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        '. . . . . e . . . . .'
+        '. . . . . e . . . . .'
+        '. . . . . e . . . . .';
+
+    width: 100%;
+    height: 100%;
+}
