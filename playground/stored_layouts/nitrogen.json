@@ -1,9 +1,9 @@
 {
-    "name": "Nitrogen",
-    "author": "Bryson James",
-    "link": "",
-    "year": 2022,
-    "for_language": "english",
-    "layout": "pmlcwxdou,ntrsgyhaeizvjbqkf';.",
-    "from_toml": true
+	"name": "nitrogen",
+	"author": "bryson",
+	"link": "",
+	"year": 2022,
+	"for_language": "english",
+	"layout": "bldcvzyou,nrtsgphaeiqxmwjkf';.",
+	"from_toml": false
 }
