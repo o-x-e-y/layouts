@@ -5,6 +5,10 @@ html {
     color: #ddd;
 }
 
+.layout-list {
+    margin: -0.7vw 0px -0.5vw 0px;
+}
+
 #home-wrapper {
     position: absolute;
     top: 0;
