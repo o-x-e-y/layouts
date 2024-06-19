@@ -64,7 +64,7 @@ function analyzeLayout(layout, excludedKeys, languageData) {
         finger6: new Set(layout.slice(5, 7).concat(layout.slice(15, 17), layout.slice(25, 27))),
         finger7: new Set([layout[7], layout[17], layout[27]]),
         finger8: new Set([layout[8], layout[18], layout[28]]),
-        finger9: new Set([layout[9], layout[19], layout[29]].concat(getExtraPinkyCharacters(layout, languageData["characters"]))),
+        finger9: new Set([layout[9], layout[19], layout[29]]),//.concat(getExtraPinkyCharacters(layout, languageData["characters"]))),
         thumbL: new Set(layout.slice(30, 33)),
         thumbR: new Set(layout.slice(33, 36))
     }
