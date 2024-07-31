@@ -8,18 +8,6 @@ let excludedKeys = new Set();
 let currentLanguageData = null;
 let languageToIndex = {};
 
-function getKeyIndex(event) {
-    let tileWidth = document.documentElement.clientWidth / 27.5;	//view width / tile count * 100
-    let tileHeight = document.documentElement.clientWidth / 37.5;	//8 / 3 * 100
-    let posX = Math.floor((event.x - keyboard.offsetLeft + window.scrollX) / tileWidth);
-    let posY = Math.floor((event.y - keyboard.offsetTop + window.scrollY) / tileHeight);
-    if (posY === 3) {
-        posX = [-1, -1, 0, 1, 2, -1, 3, 4, 5, -1, -1][posX];
-        return posY * 10 + posX;
-    }
-    return (posX < 5 ? posX : posX - 1) + posY * 10;
-}
-
 function _setLanguageData(data, repaintBetterOrWorse, newLayout = null, resetExcludedKeys) {
     currentLanguageData = data;
     let back = {};
@@ -69,7 +57,10 @@ function initLayout() {
         e.preventDefault();
     }, false);
 
-    keys.forEach(key => {
+    for (let i = 0; i < keys.length; ++i) {
+        let key = keys[i];
+        key.index = i;
+
         key.oncontextmenu = () => {
             if (key.classList.contains("excluded-key")) {
                 key.classList.remove("excluded-key");
@@ -84,22 +75,26 @@ function initLayout() {
 
         key.addEventListener('dragstart', (event) => {
             key.classList.add('dragging');
-            startIndex = getKeyIndex(event);
+            startIndex = i;
         })
 
         key.addEventListener('drop', (event) => {
-            let endIndex = getKeyIndex(event);
+            let endIndex = i;
             let startKey = '';
             try {
                 startKey = keys[startIndex].innerHTML;
                 keys[startIndex].innerHTML = keys[endIndex].innerHTML;
                 keys[endIndex].innerHTML = startKey;
 
-                if (keys[startIndex].classList.contains("excluded-key")) {
+                let start_excluded = keys[startIndex].classList.contains("excluded-key");
+                let end_excluded = keys[endIndex].classList.contains("excluded-key");
+                let both_excluded = start_excluded && end_excluded;
+
+                if (start_excluded &&!both_excluded) {
                     keys[endIndex].classList.add("excluded-key");
                     keys[startIndex].classList.remove("excluded-key");
                 }
-                else if (keys[endIndex].classList.contains("excluded-key")) {
+                else if (end_excluded && !both_excluded) {
                     keys[startIndex].classList.add("excluded-key");
                     keys[endIndex].classList.remove("excluded-key");
                 }
@@ -115,7 +110,7 @@ function initLayout() {
             key.classList.remove('dragging');
             analyze(excludedKeys, languageData, false, false);
         })
-    })
+    }
 
     const languages = [
         "Albanian", "Bokmal", "Czech", "Dutch", "Dutch Repeat", "English Repeat", "English þ",
